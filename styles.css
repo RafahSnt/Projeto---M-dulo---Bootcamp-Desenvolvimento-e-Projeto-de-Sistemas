@@ -1,0 +1,230 @@
+/* ============================================================
+   TOKENS — variáveis globais de design
+   ============================================================ */
+:root {
+  --gold:        #c9a84c;
+  --gold-light:  #e8cc86;
+  --gold-dim:    rgba(201, 168, 76, 0.18);
+  --gold-border: rgba(201, 168, 76, 0.28);
+  --bg:          #0c0b09;
+  --surface:     rgba(255, 255, 255, 0.035);
+  --text-hi:     #f5eed8;
+  --text-lo:     rgba(245, 238, 216, 0.38);
+  --radius:      14px;
+  --pink:        rgba(190, 80, 140, 0.85);
+  --pink-dim:    rgba(190, 80, 140, 0.14);
+  --teal:        rgba(50, 175, 130, 0.85);
+  --teal-dim:    rgba(50, 175, 130, 0.14);
+  --blue:        rgba(70, 140, 210, 0.85);
+  --blue-dim:    rgba(70, 140, 210, 0.14);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'Syne', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 45% at 15% 25%, rgba(201,168,76,.10) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 50% at 85% 75%, rgba(201,168,76,.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  padding: 56px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   BRAND
+   ============================================================ */
+.brand {
+  text-align: center;
+  margin-bottom: 52px;
+  animation: fadeUp .6s ease both;
+}
+
+.brand__ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+
+.brand__ring svg {
+  width: 24px;
+  height: 24px;
+  stroke: var(--gold);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.brand__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: .03em;
+  line-height: 1.1;
+}
+
+.brand__tagline {
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  margin-top: 8px;
+}
+
+/* ============================================================
+   BOTÕES
+   ============================================================ */
+.btn-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 17px 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .18s ease, background .25s ease;
+  animation: fadeUp .6s ease both;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  transition: border-color .25s ease;
+}
+
+.btn:hover  { background: rgba(255,255,255,.055); transform: translateY(-2px); }
+.btn:active { transform: scale(.98); }
+
+/* Bordas por variante */
+.btn--gold::after { border-color: var(--gold-border); }
+.btn--pink::after { border-color: rgba(190,80,140,.25); }
+.btn--teal::after { border-color: rgba(50,175,130,.25); }
+.btn--blue::after { border-color: rgba(70,140,210,.25); }
+
+.btn--gold:hover::after { border-color: rgba(201,168,76,.55); }
+.btn--pink:hover::after { border-color: rgba(190,80,140,.55); }
+.btn--teal:hover::after { border-color: rgba(50,175,130,.55); }
+.btn--blue:hover::after { border-color: rgba(70,140,210,.55); }
+
+/* Ícone */
+.btn__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s ease;
+}
+
+.btn:hover .btn__icon { transform: scale(1.08); }
+
+.btn--gold .btn__icon { background: var(--gold-dim); }
+.btn--pink .btn__icon { background: var(--pink-dim); }
+.btn--teal .btn__icon { background: var(--teal-dim); }
+.btn--blue .btn__icon { background: var(--blue-dim); }
+
+.btn__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.btn--gold .btn__icon svg { stroke: var(--gold); }
+.btn--pink .btn__icon svg { stroke: var(--pink); }
+.btn--teal .btn__icon svg { stroke: var(--teal); }
+.btn--blue .btn__icon svg { stroke: var(--blue); }
+
+/* Texto */
+.btn__body { flex: 1; }
+
+.btn__label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-hi);
+  letter-spacing: .01em;
+}
+
+.btn__sub {
+  display: block;
+  font-size: 12px;
+  color: var(--text-lo);
+  margin-top: 3px;
+}
+
+/* Seta */
+.btn__arrow {
+  font-size: 20px;
+  line-height: 1;
+  color: var(--text-lo);
+  transition: transform .2s ease, color .2s ease;
+}
+
+.btn--gold:hover .btn__arrow { color: var(--gold); transform: translateX(4px); }
+.btn--pink:hover .btn__arrow { color: var(--pink); transform: translateX(4px); }
+.btn--teal:hover .btn__arrow { color: var(--teal); transform: translateX(4px); }
+.btn--blue:hover .btn__arrow { color: var(--blue); transform: translateX(4px); }
+
+/* Delays de entrada escalonados */
+.btn:nth-child(1) { animation-delay: .10s; }
+.btn:nth-child(2) { animation-delay: .20s; }
+.btn:nth-child(3) { animation-delay: .30s;
